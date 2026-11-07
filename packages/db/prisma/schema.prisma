@@ -1,1 +1,72 @@
-// TODO: User, Task, StudySession, StudyInterval with partial unique index for single active session
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TaskStatus {
+  PENDING
+  COMPLETED
+}
+
+enum SessionStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  passwordHash String
+  timezone     String   @default("UTC")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  tasks        Task[]
+  sessions     StudySession[]
+}
+
+model Task {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title         String
+  scheduledDate DateTime      @db.Date
+  targetMinutes Int
+  status        TaskStatus    @default(PENDING)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  sessions      StudySession[]
+
+  @@index([userId, scheduledDate])
+}
+
+model StudySession {
+  id        String          @id @default(cuid())
+  userId    String
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  taskId    String
+  task      Task            @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  status    SessionStatus   @default(ACTIVE)
+  startedAt DateTime        @default(now())
+  endedAt   DateTime?
+  intervals StudyInterval[]
+
+  @@index([userId, status])
+  @@index([taskId])
+}
+
+model StudyInterval {
+  id        String       @id @default(cuid())
+  sessionId String
+  session   StudySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  startedAt DateTime     @default(now())
+  endedAt   DateTime?
+
+  @@index([sessionId])
+  @@index([startedAt])
+}
