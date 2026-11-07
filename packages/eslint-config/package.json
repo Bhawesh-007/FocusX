@@ -1,0 +1,9 @@
+{
+  "name": "@focus/eslint-config",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "base.js",
+    "nextjs.js"
+  ]
+}

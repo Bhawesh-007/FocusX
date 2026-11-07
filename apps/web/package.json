@@ -1,0 +1,28 @@
+{
+  "name": "@focus/web",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next-auth": "^5.0.0-beta.25",
+    "@focus/core": "workspace:*",
+    "@focus/db": "workspace:*",
+    "@focus/ui": "workspace:*",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@focus/typescript-config": "workspace:*",
+    "@focus/eslint-config": "workspace:*",
+    "typescript": "^5.5.0",
+    "tailwindcss": "^3.4.0"
+  }
+}
