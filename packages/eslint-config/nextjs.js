@@ -1,1 +1,3 @@
-module.exports = { extends: ['./base.js'] };
+module.exports = {
+  extends: ['next/core-web-vitals'],
+};
