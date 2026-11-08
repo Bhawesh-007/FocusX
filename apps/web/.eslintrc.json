@@ -1,0 +1,3 @@
+{
+  "extends": "@focus/eslint-config/nextjs.js"
+}

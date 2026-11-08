@@ -1,1 +1,3 @@
-// TODO: implement per docs/project-structure.md
+import { handlers } from '@/server/auth';
+
+export const { GET, POST } = handlers;
