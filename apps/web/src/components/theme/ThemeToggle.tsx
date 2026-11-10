@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { cn } from '@focus/ui';
 import { Monitor, Moon, Sun } from 'lucide-react';
 import { useTheme, type Theme } from './ThemeProvider';
@@ -12,6 +13,15 @@ const options: Array<{ value: Theme; label: string; Icon: typeof Sun }> = [
 
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.style.setProperty('--background', '210 60% 95%');
+    } else {
+      root.style.removeProperty('--background');
+    }
+  }, [theme]);
 
   return (
     <div
