@@ -23,4 +23,6 @@ export const Errors = {
   taskNotToday: () =>
     new ServiceError('TASK_NOT_TODAY', 'Timers can only be started for tasks scheduled today.', 409),
   sessionCompleted: () => new ServiceError('SESSION_COMPLETED', 'This session is already completed.', 409),
+  emailInUse: () =>
+    new ServiceError('EMAIL_IN_USE', 'An account with this email already exists.', 409),
 };

@@ -6,8 +6,8 @@ export const dailyQuerySchema = z.object({
 });
 
 export const weeklyQuerySchema = z.object({
-  // ISO week start date, YYYY-MM-DD
-  startDate: dateSchema.optional(),
+  // Last day of the 7-day window, YYYY-MM-DD
+  endDate: dateSchema.optional(),
 });
 
 export type DailyQuery = z.infer<typeof dailyQuerySchema>;

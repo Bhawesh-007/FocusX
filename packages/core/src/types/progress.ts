@@ -25,3 +25,22 @@ export interface DailySummaryInput {
   date: string;
   tasks: Pick<TaskDTO, 'targetMinutes' | 'actualMs'>[];
 }
+
+/** GET /api/progress/daily response. */
+export interface DailyProgressResponse {
+  date: string; // YYYY-MM-DD
+  tasks: TaskDTO[];
+}
+
+/** One day in the weekly trend. */
+export interface WeeklyDayProgress {
+  date: string; // YYYY-MM-DD
+  plannedMinutes: number;
+  studiedMinutes: number;
+}
+
+/** GET /api/progress/weekly response. */
+export interface WeeklyProgressResponse {
+  endDate: string; // YYYY-MM-DD
+  days: WeeklyDayProgress[];
+}

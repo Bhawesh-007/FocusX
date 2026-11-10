@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { Button } from '@focus/ui';
@@ -80,6 +81,12 @@ export function LoginForm() {
         {pending ? <Loader2 className="animate-spin" aria-hidden /> : null}
         Sign in
       </Button>
+      <p className="text-center text-sm text-muted-foreground">
+        Don&apos;t have an account?{' '}
+        <Link href="/register" className="font-medium text-primary underline-offset-4 hover:underline">
+          Sign up
+        </Link>
+      </p>
       <p className="text-center text-xs text-muted-foreground">Dev seed: test@focus.local / password123</p>
     </form>
   );
